@@ -1,0 +1,28 @@
+void halfInsert_sort(int *a,int n)
+{
+    for(int i = 0; i < n; i++)
+    {
+        if(a[i] < a[i-1])
+        {
+            int temp = a[i];
+            //后面和直接插入不一樣，采用折半
+            int low = 0;
+            int high = i-1;
+            int mid = (low + high)/2;
+            while(low <= high)//当low > high停止
+            {
+                if(a[mid] >= temp)
+                {
+                    high = mid - 1;//注意要-1
+                }
+                else
+                {
+                    low = mid + 1;
+                }
+            }
+            for(int j = i-1;j >= high+1;j--)//後移操作，high + 1對應的元素>=temp，故也需要後移
+                a[j+1] = a[j];
+            a[high+1] = temp;
+        }
+    }
+}
