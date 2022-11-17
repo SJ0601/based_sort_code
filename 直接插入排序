@@ -1,0 +1,18 @@
+void directInsert_sort(int *a,int n)
+{
+    for(int i = 0; i < n; i++)
+    {
+        if(a[i] < a[i-1])//先和自己的前面比較，如果正常就不用繼續向前比較（因為每一個都是這麽比過來的）
+        {
+            int temp = a[i];//記錄要插入的元素
+            for(int j = i-1; j >= 0; j--) //從后向前比
+            {
+                if(a[j] > temp)//將a[j]向后移
+                {
+                    a[j+1] = a[j];
+                    a[j] = temp;
+                }
+            }
+        }
+    }
+}
